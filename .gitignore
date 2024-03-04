@@ -1,0 +1,14 @@
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Intellij
+.idea/
+
+# VSCode
+.vscode/
+
+# macOS Folder system
+.DS_Store
+
+__pycache__/
+results/
