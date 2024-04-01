@@ -1,9 +1,9 @@
 import numpy as np
 import numpy.random as rnd
 import scipy.sparse as sp
-from src.mbpg import MBPG
+from src.mmbpg import MMBPG
 from src.alternating import AM, MU
-import src.mbpg
+import src.mmbpg
 
 
 def obj(x):
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     eps = 0
     MAX_ITER = 3000
     scaled = False
-    src.mbpg.WRITE, src.alternating.WRITE = [True] * 2
+    src.mmbpg.WRITE, src.alternating.WRITE = [True] * 2
 
     rnd.seed(42)
     W = sp.random(m, r, sparsity, data_rvs=rnd.rand).toarray()
@@ -64,21 +64,21 @@ if __name__ == '__main__':
     nprob = 'NMFdirichlet_x0{}'.format('scaled' if scaled else 'unscaled')
     csv_paths = []
 
-    nalg = 'MBPG'
+    nalg = 'MMBPG'
     path = dir_path + '{}-{}-{}-{}-{}-{}'.format(nprob, nalg, n, m, r, sparsity)
     csv_path = path + '.csv'
     csv_paths += [csv_path]
 
-    mbpg = MBPG(x0, obj, X, OPT, m, kernel, grad_kernel, lsmad, csv_path, MAX_ITER=MAX_ITER)
-    mbpg.run()
+    mmbpg = MMBPG(x0, obj, X, OPT, m, kernel, grad_kernel, lsmad, csv_path, MAX_ITER=MAX_ITER)
+    mmbpg.run()
 
-    nalg = 'MBPGe'
+    nalg = 'MMBPGe'
     path = dir_path + '{}-{}-{}-{}-{}-{}'.format(nprob, nalg, n, m, r, sparsity)
     csv_path = path + '.csv'
     csv_paths += [csv_path]
 
-    mbpge = MBPG(x0, obj, X, OPT, m, kernel, grad_kernel, lsmad, csv_path, MAX_ITER=MAX_ITER)
-    mbpge.run(extrapolation=True)
+    mmbpge = MMBPG(x0, obj, X, OPT, m, kernel, grad_kernel, lsmad, csv_path, MAX_ITER=MAX_ITER)
+    mmbpge.run(extrapolation=True)
 
     nalg = 'MU'
     path = dir_path + '{}-{}-{}-{}-{}-{}'.format(nprob, nalg, n, m, r, sparsity)

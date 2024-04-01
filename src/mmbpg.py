@@ -89,7 +89,7 @@ class FOM(Iteration):
         return self.xk
 
 
-class MBPG(FOM):
+class MMBPG(FOM):
     def __init__(self, x0, obj, grad, opt, m, kernel, grad_kernel, lsmad, csv_path='', MAX_ITER=1000):
         super().__init__(x0, obj, grad, opt, m, csv_path, MAX_ITER)
         self.kernel = kernel

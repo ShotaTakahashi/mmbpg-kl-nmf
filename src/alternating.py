@@ -2,7 +2,7 @@ import numpy as np
 import numpy.linalg as LA
 import time
 from abc import abstractmethod
-from src.mbpg import Iteration
+from src.mmbpg import Iteration
 
 
 WRITE = False
